@@ -2,12 +2,12 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 [project]
-name = "fem_1d_heat"
+name = "linear_regression"
 version = "0.0.1"
 authors = [
 { name="Emily Hill", email="emily.hill@ucalgary.ca" },
 ]
-description="Finite Element for 1D heat conduction"
+description="Linear Regression Lab implementation"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
@@ -20,4 +20,4 @@ classifiers = [
 "License :: OSI Approved :: GNU General Public License v3",
 ]
 [project.urls]
-"Homepage" = "https://github.com/EmilyH25/goph420-w2023-lab00-stEH"
+"Homepage" = "https://github.com/EmilyH25/goph420-w2023-lab03-stEH"
