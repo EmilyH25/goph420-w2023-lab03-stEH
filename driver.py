@@ -5,6 +5,22 @@ from src.linear_regression.regression import(
         multi_regress)
 
 def plotting(x,y,xlab,ylab, type = 'g.'):
+    """Plots data.
+    
+    Parameters
+    ----------
+    x:  array_like, shape = (n, ) or (n,1)
+        The list of x values
+    y:  array_like, shape = (n, ) or (n,1)
+        The list of y values
+    xlab:   string
+        label for the x axis
+    ylab:   string
+        label for the y axis
+    type:   string
+        command for indicator on the graph
+    
+    """
     plt.plot(x,y,type)
     plt.xlabel(xlab)
     plt.ylabel(ylab)
@@ -19,6 +35,7 @@ def main():
     plotting(time, magnitude, 'time (hours)', 'magnitude')
     plt.show()
     
+    # creating smaller lists to reduce time range
     mintime = 45
     maxtime = 120
     subtime = []
@@ -43,6 +60,7 @@ def main():
     M = np.linspace(minm, maxm, num_dots)
     num = np.zeros(len(M))
     
+    # counting number of earthquakes over a given magnitude
     for i in range(len(submag)):
         for j in range(num_dots):
             if submag[i]>M[j]:
@@ -51,6 +69,7 @@ def main():
     plotting(M, num, 'magnitude', 'number of earthquakes','o')
     plt.show()
     
+    # linearizing using log relationship. skips locations where num = 0
     lin = np.zeros(len(M))
     for i in range(len(num)):
         if num[i]<=0:
@@ -58,6 +77,7 @@ def main():
         else:
             lin[i] = np.log10(num[i])
     
+    # making Z matrix
     Z = np.zeros((len(num),2))
     for i in range(len(num)):
         Z[i,0]=1
@@ -67,6 +87,7 @@ def main():
     
     plotting(M,lin,'magnitude', 'log(number of earthquakes)','o')
     
+    # making a line of best fit from linear regression
     M = np.linspace(min(Z[:,1]),max(Z[:,1]),100)
     y = a[0] + a[1]*M
     
