@@ -67,6 +67,8 @@ def main():
                 if submag[i]>M[j]:
                     num[j] += 1
         
+        plotting(M, num, 'magnitude', 'number of earthquakes','-')
+        
         # linearizing using log relationship. skips locations where num = 0
         lin = np.zeros(len(M))
         for i in range(len(num)):
@@ -82,6 +84,8 @@ def main():
             Z[i,1]=M[i]
         a, r, rsq = multi_regress(lin, Z)
         b.append(a[1])
+    plt.legend(inty)
+    plt.show()
     plt.plot(inty,b,'o')
     plt.ylabel('b')
     plt.xlabel('middle of interval (hours)')
