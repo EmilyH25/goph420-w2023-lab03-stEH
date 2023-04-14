@@ -67,8 +67,6 @@ def main():
                 if submag[i]>M[j]:
                     num[j] += 1
         
-        plotting(M, num, 'magnitude', 'number of earthquakes','-')
-        
         # linearizing using log relationship. skips locations where num = 0
         lin = np.zeros(len(M))
         for i in range(len(num)):
@@ -77,15 +75,19 @@ def main():
             else:
                 lin[i] = np.log10(num[i])
         
+        plotting(M, lin, 'magnitude', 'number of earthquakes','o')
+        
         # making Z matrix
         Z = np.zeros((len(num),2))
         for i in range(len(num)):
             Z[i,0]=1
             Z[i,1]=M[i]
         a, r, rsq = multi_regress(lin, Z)
-        b.append(a[1])
-    plt.legend(inty)
-    plt.show()
+        y = a[0] + a[1]*M
+        plt.plot(M, y, '-')
+        plt.title(intt)
+        plt.show()
+        b.append(abs(a[1]))
     plt.plot(inty,b,'o')
     plt.ylabel('b')
     plt.xlabel('middle of interval (hours)')

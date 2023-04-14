@@ -30,23 +30,6 @@ def multi_regress(y, Z):
     nt = np.dot(ZT,y)
     inet = np.linalg.inv(et)
     a = np.dot(inet,nt)
-    # building Z matrix
-    #for k in range(m):
-     #   for j in range (m):
-      #      X[k,j]=0
-       #     for i in range (n):
-        #        X[k,j]=X[k,j]+Z[i,k]*Z[i,j]
-    
-    # building Y column vector
-    #for k in range (m):
-     #   Y[k]=0
-      #  for i in range (n):
-       #     Y[k]=Y[k]+Z[i,k]*y[i]
-    
-    # Inverse Z matrix
-    #inverseX = np.linalg.pinv(X)
-    # Coefficients column vector
-    #a = np.dot(inverseX, Y)
     
     for i in range (n):
         r[i]=0
